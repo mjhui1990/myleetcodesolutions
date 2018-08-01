@@ -1,26 +1,14 @@
 var postorderTraversal = function(root) {
-    if(!root) return [];
-    let currentNode = root
-    const stack = [];
-    const valuesArr = []
+  if (!root) return [];
+  let stackOne = [root];
+  let numArr = [];
+  let currentNode;
 
-    while(currentNode) {
-        if(currentNode.right) stack.push(currentNode.right);
-        stack.push(currentNode)
-        currentNode = currentNode.left;
-    }
-    
-    currentNode = stack.pop();
-    if (currentNode.right && stack[stack.length-1] === currentNode.right) {
-        stack.pop()
-        stack.push(currentNode)
-        currentNode = currentNode.right;
-    }else {
-        valuesArr.push(currentNode.val)
-        currentNode = null;
-    }
-
-
-    return valuesArr;
-}
-
+  while (stackOne.length) {
+    currentNode = stackOne.pop();
+    numArr.unshift(currentNode.val);
+    if (currentNode.left) stackOne.push(currentNode.left);
+    if (currentNode.right) stackOne.push(currentNode.right);
+  }
+  return numArr;
+};
