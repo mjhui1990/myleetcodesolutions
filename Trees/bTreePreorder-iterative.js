@@ -13,3 +13,15 @@ var preorderTraversal = function(root) {
   }
   return valuesArr;
 };
+
+
+//recursive
+
+var preorderTraversal = function(root) {
+  let returnNum = []
+  if(!root) return []
+  returnNum.push(root.val)
+  returnNum = returnNum.concat(preorderTraversal(root.left))
+  returnNum = returnNum.concat(preorderTraversal(root.right))
+  return returnNum
+}
